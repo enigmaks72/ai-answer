@@ -115,7 +115,7 @@ if query := st.chat_input("질문을 입력해주세요."):
 
 
 # Add assistant message to chat history
-        st.session_state.messages.append({"role": "assistant", "content": response})
+#        st.session_state.messages.append({"role": "assistant", "content": response})
 
 def tiktoken_len(text):
     tokenizer = tiktoken.get_encoding("cl100k_base")
