@@ -63,28 +63,55 @@ def main():
 
     history = StreamlitChatMessageHistory(key="chat_messages")
 
+#수정된 내용
+if query := st.chat_input("질문을 입력해주세요."):
+    st.session_state.messages.append({"role": "user", "content": query})
+
+    with st.chat_message("user"):
+        st.markdown(query)
+
+    with st.chat_message("assistant"):
+        chain = st.session_state.conversation
+
+        with st.spinner("생각중입니다..."):
+            result = chain({"question": query})  # <-- 여기서 인자의 형식을 확인하고 수정하세요
+            with get_openai_callback() as cb:
+                st.session_state.chat_history = result['chat_history']
+            response = result['answer']
+            source_documents = result['source_documents']
+
+            st.markdown(response)
+            with st.expander("참고 문서 확인"):
+                for doc in source_documents:
+                    st.markdown(f"{doc.metadata['source']}: {doc.page_content}")
+                
+    st.session_state.messages.append({"role": "assistant", "content": response})
+
+
+    
+    
     # Chat logic
-    if query := st.chat_input("질문을 입력해주세요."):
-        st.session_state.messages.append({"role": "user", "content": query})
+    #if query := st.chat_input("질문을 입력해주세요."):
+    #    st.session_state.messages.append({"role": "user", "content": query})
 
-        with st.chat_message("user"):
-            st.markdown(query)
+     #   with st.chat_message("user"):
+     #       st.markdown(query)
 
-        with st.chat_message("assistant"):
-            chain = st.session_state.conversation
+      #  with st.chat_message("assistant"):
+      #      chain = st.session_state.conversation
 
-            with st.spinner("생각중입니다..."):
-                result = chain({"question": query})
-                with get_openai_callback() as cb:
-                    st.session_state.chat_history = result['chat_history']
-                response = result['answer']
-                source_documents = result['source_documents']
+       #     with st.spinner("생각중입니다..."):
+       #         result = chain({"question": query})
+       #         with get_openai_callback() as cb:
+       #             st.session_state.chat_history = result['chat_history']
+       #         response = result['answer']
+       #         source_documents = result['source_documents']
 
-                st.markdown(response)
-                with st.expander("참고 문서 확인"):
-                    st.markdown(source_documents[0].metadata['source'], help = source_documents[0].page_content)
-                    st.markdown(source_documents[1].metadata['source'], help = source_documents[1].page_content)
-                    st.markdown(source_documents[2].metadata['source'], help = source_documents[2].page_content)
+        #        st.markdown(response)
+         #       with st.expander("참고 문서 확인"):
+         #           st.markdown(source_documents[0].metadata['source'], help = source_documents[0].page_content)
+         #           st.markdown(source_documents[1].metadata['source'], help = source_documents[1].page_content)
+          #          st.markdown(source_documents[2].metadata['source'], help = source_documents[2].page_content)
                     
 
 
