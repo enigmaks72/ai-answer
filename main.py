@@ -1,3 +1,4 @@
+
 import streamlit as st
 import tiktoken
 from loguru import logger
@@ -62,7 +63,8 @@ def main():
             st.markdown(message["content"])
 
     history = StreamlitChatMessageHistory(key="chat_messages")
-   # Chat logic
+
+    # Chat logic
     if query := st.chat_input("질문을 입력해주세요."):
         st.session_state.messages.append({"role": "user", "content": query})
 
