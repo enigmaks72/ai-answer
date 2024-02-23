@@ -85,7 +85,7 @@ if query := st.chat_input("질문을 입력해주세요."):
                 for doc in source_documents:
                     st.markdown(f"{doc.metadata['source']}: {doc.page_content}")
                 
-st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": response})
 
     
     
