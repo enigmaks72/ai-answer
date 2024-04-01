@@ -29,7 +29,7 @@ def main():
     page_title="DirChat",
     page_icon=":books:")
 
-    st.title("_Onion Private Data :bule[AI]_ :red[QA Chat]_ :books:")
+    st.title("_Onion Private Data :blue[AI] :red[QA Chat]_ :books:")
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
