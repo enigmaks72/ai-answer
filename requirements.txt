@@ -11,5 +11,3 @@ loguru
 docx2txt
 transformers
 streamlit
-WebBaseLoader
-UnstructuredURLLoader
