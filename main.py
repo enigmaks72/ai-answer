@@ -11,8 +11,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import UnstructuredPowerPointLoader
-from langchain.document_loaders import WebBaseLoader
-from langchain.document_loaders import UnstructuredURLLoader
+#from langchain.document_loaders import WebBaseLoader
+#from langchain.document_loaders import UnstructuredURLLoader
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
